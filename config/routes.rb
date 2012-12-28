@@ -1,4 +1,7 @@
 Inventar::Application.routes.draw do
+  root :to => "parts#index"
+  resources :parts
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
