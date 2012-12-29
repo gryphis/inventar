@@ -1,0 +1,20 @@
+<%= form_for(@part) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :desc, "Description" %><br/>
+    <%= f.text_field :desc %>
+  </p>
+  <p>
+    <%= f.label :serial, "Serial" %><br/>
+    <%= f.text_field :serial %>
+  </p>
+  <p>
+    <%= f.label :price, "Price" %><br/>
+    <%= f.number_field :price, :min => 0 %>
+  </p>
+  <p>
+    <%= f.label :datev_id, "Datev_ID" %><br/>
+    <%= f.number_field :datev_id, :min => 0 %>
+  </p>
+  <%= f.submit %>
+<% end %>
