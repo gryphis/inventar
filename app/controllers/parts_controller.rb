@@ -1,4 +1,6 @@
 class PartsController < ApplicationController
+  before_filter :find_part, :only => [:show,:edit,:update,:destroy]
+
   def index
     @parts = Part.all
   end
@@ -17,13 +19,10 @@ class PartsController < ApplicationController
     end
   end
   def show
-    @part = Part.find(params[:id])
   end
   def edit
-    @part = Part.find(params[:id])
   end
   def update
-    @part = Part.find(params[:id])
     if @part.update_attributes(params[:part])
       flash[:notice] = "Part has been updated."
       redirect_to @part
@@ -33,9 +32,17 @@ class PartsController < ApplicationController
     end
   end
   def destroy
-    @part = Part.find(params[:id])
     @part.destroy
     flash[:notice] = "Part has been deleted."
     redirect_to parts_path
   end
+
+private
+  def find_part
+    @part = Part.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The part you were looking for could not be found."
+    redirect_to parts_path
+  end
+
 end
