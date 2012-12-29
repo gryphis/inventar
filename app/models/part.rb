@@ -1,5 +1,5 @@
 class Part < ActiveRecord::Base
-  attr_accessible :datevid, :desc, :price, :serial
+  attr_accessible :datev_id, :desc, :price, :serial
 
   validates :desc, :presence => true
 end

@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228214601) do
+ActiveRecord::Schema.define(:version => 20121229130815) do
 
   create_table "parts", :force => true do |t|
     t.string   "desc",       :limit => 80
     t.string   "serial",     :limit => 32
     t.decimal  "price",                    :precision => 10, :scale => 2
-    t.integer  "datevid"
+    t.integer  "datev_id"
     t.datetime "created_at",                                              :null => false
     t.datetime "updated_at",                                              :null => false
   end
