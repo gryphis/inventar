@@ -32,5 +32,10 @@ class PartsController < ApplicationController
       render :action => "edit"
     end
   end
-
+  def destroy
+    @part = Part.find(params[:id])
+    @part.destroy
+    flash[:notice] = "Part has been deleted."
+    redirect_to parts_path
+  end
 end
