@@ -11,7 +11,8 @@ class PartsController < ApplicationController
       redirect_to @part, :notice => "Part has been created."
     else
       # nothing yet
-      # redirect_to ?, :alert => "Part has not been created."
+      flash[:alert] = "Part has not been created."
+      render :action => "new"  #, :alert => "Part has not been created."
     end
   end
   def show
