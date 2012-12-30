@@ -5,12 +5,15 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+.pluslink { font-size:0.5em; }
+  </style>
 </head>
 <body>
 <table div="main">
   <tr>
-    <td>financial.com AG<br/><h1><%= link_to "Inventar", root_path %><h1/><td/>
-  <tr/>
+    <td>financial.com AG<br/><h1><%= link_to "Inventar", root_path %></h1></td>
+  </tr>
   <tr>
     <td>
       <% flash.each do |key, value| %>
@@ -18,12 +21,12 @@
 	 <%= value %>
 	</div>
       <% end %>
-    <td/>	
-  <tr/>
+    </td>	
+  </tr>
   <tr>
     <td>
       <%= yield %>
-    <td/>
-  <tr/>
+    </td>
+  </tr>
 </body>
 </html>
