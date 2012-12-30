@@ -1,4 +1,20 @@
-= div_for(@part) do
-  = link_to @part.desc, @part
-  %br/
-  = @part.serial
+%table.part{:border => "0"}
+  %tr
+    %th.part.desc{:colspan => "5"} Description
+  %tr
+    %th.part.serial Serial
+    %th
+    %th.part.datev_id Datev_ID
+    %th
+    %th.part.price Price
+  - @parts.each do |p|
+    %tr
+    %tr
+    %tr
+      %td.part.desc{:colspan => "3"}= link_to p.desc, p
+    %tr
+      %td.part.serial{:id => "serial_"+p.id.to_s}= p.serial
+      %td
+      %td.part.datev_id{:id => "datev_id_"+p.id.to_s}= p.datev_id
+      %td
+      %td.part.price{:id => "price_"+p.id.to_s}= p.price || "(no)"

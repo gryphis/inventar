@@ -5,7 +5,7 @@ feature "Editing Parts" do
     Factory(:part, :desc => "HP DL160G6")
     visit "/"
     click_link "HP DL160G6"
-    click_link "Edit Part"
+    click_link "Edit"
   end
   scenario "Updating a part" do
     fill_in "Description", :with => "HP DL160G8"
