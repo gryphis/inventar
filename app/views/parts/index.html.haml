@@ -1,0 +1,18 @@
+%h2
+  Parts
+  %span= link_to "New", new_part_path
+.parts
+  %table{:border => "1"}
+    %tr
+      %th.part.desc{:colspan => "3"} Description
+    %tr
+      %th.part.serial Serial
+      %th.part.datev_id Datev_ID
+      %th.part.price Price
+    - @parts.each do |p| @part=p
+        %tr
+          %td.part.desc{:colspan => "3"}= link_to @part.desc, @part
+        %tr
+          %td.part.serial{:id => "serial_"+p.id.to_s}= @part.serial
+          %td.part.datev_id{:id => "datev_id_"+p.id.to_s}= @part.datev_id
+          %td.part.price{:id => "price_"+p.id.to_s}= @part.price
