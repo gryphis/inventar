@@ -6,8 +6,8 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <style type="text/css">
-h2 a { font-size:0.5em; }
-table.part { margin-top:0.5em; border-spacing:0.3em; }
+h2 .func { font-size:0.5em; }
+table .part { margin-top:0.5em; border-spacing:0.3em; }
 th { font-size:0.8em; color:#773377; }
 .part.desc { text-align:left; }
 .part.serial { text-align:left; }
@@ -34,5 +34,6 @@ th { font-size:0.8em; color:#773377; }
       <%= yield %>
     </td>
   </tr>
+</table>
 </body>
 </html>
