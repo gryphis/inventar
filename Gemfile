@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '~> 3.2.11'
 gem 'dynamic_form', '1.1.4'
 
 # Bundle edge Rails instead:
@@ -41,11 +41,15 @@ gem 'jquery-rails'
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
   gem 'haml-rails',  '~> 0.3.5'
+  gem "guard-rspec", "~> 0.7.0"
+  gem "factory_girl_rails", ">= 4.1.0"
 end
 
 group :test do
   gem 'capybara',     '1.1.2'
-  gem 'factory_girl', '2.6.4'
+  gem 'faker',        '1.1.2'
+  gem "database_cleaner", "~> 0.7.2"
+  gem "launchy", "~> 2.1.0"
 end
 
 # Local Variables:

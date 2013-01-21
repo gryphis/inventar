@@ -1,0 +1,206 @@
+# -*- coding: utf-8 -*-
+#
+# source: "everyday rails testing with rspec" by Aaron Sumner
+# minorly changed by aka, Jan-2013
+
+require 'spec_helper'
+
+describe MessagesController do
+  describe 'GET #index' do
+    it "populates an array of messages" do
+      message = create(:message)
+      get :index
+      assigns(:messages).should eq [message]
+    end
+    it "renders the :index view" do
+      get :index
+      response.should render_template :index
+    end
+  end
+
+  describe 'GET #show' do
+    it "assigns the requested message to @message" do
+      message = create(:message)
+      get :show, id: message
+      assigns(:message).should eq message
+    end
+    it "renders the :show template" do
+      message = create(:message)
+      get :show, id: message
+      response.should render_template :show
+    end
+  end
+
+  describe 'GET #new' do
+    it "assigns a new Message to @message" do
+      get :new
+      assigns(:message).should be_a_new(Message)
+    end
+    it "renders the :new template" do
+      get :new
+      response.should render_template :new
+    end
+  end
+
+  describe 'GET #edit' do
+    it "assigns the requested message to @message" do
+      message = create(:message)
+      get :edit, id: message
+      assigns(:message).should eq message
+    end
+    it "renders the :edit template" do
+      message = create(:message)
+      get :edit, id: message
+      response.should render_template :edit
+    end
+  end
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "saves the new message in the database" do
+        expect{
+          post :create, message: attributes_for(:message)
+        }.to change(Message, :count).by(1)
+      end
+      it "redirects to the home page" do
+        post :create, message: attributes_for(:message)
+        response.should redirect_to message_path(assigns(:message))
+      end
+    end
+    context "with invalid attributes" do
+      it "does not save the new message in the database" do
+        expect{
+          post :create,
+          message: attributes_for(:invalid_message)
+        }.to_not change(Message, :count)
+      end
+      it "re-renders the :new template" do
+        post :create,
+        message: attributes_for(:invalid_message)
+        response.should render_template :new
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    before :each do
+      @message = create(:message, name: "Aaron Sumner",
+                        email: "aaron@everydayrails.com")
+    end
+    it "locates the requested @message" do
+      put :update, id: @message, message: attributes_for(:message)
+      assigns(:message).should eq(@message)
+    end
+    context "valid attributes" do
+      it "changes @message's attributes" do
+        put :update, id: @message,
+        message: attributes_for(:message, firstname: "A. Sumner")
+        @message.reload
+        @message.name.should eq("A. Sumner")
+      end
+      it "redirects to the updated message" do
+        put :update, id: @message, message: attributes_for(:message)
+        response.should redirect_to @message
+      end
+    end
+    context "invalid attributes" do
+      it "does not change @message's attributes" do
+        put :update, id: @message,
+        message: attributes_for(:message, name: "None", email: nil)
+        @message.reload
+        @message.name.should_not eq("None")
+      end
+      it "re-renders the edit method" do
+        put :update, id: @message, message: attributes_for(:invalid_message)
+        response.should render_template :edit
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before :each do
+      @message = create(:message)
+    end
+    it "deletes the message" do
+      expect {
+        delete :destroy, id: @message
+      }.to change(Message,:count).by(-1)
+    end
+    it "redirects to messages#index" do
+      delete :destroy, id: @message
+      response.should redirect_to messages_url
+    end
+  end
+
+  # non CRUD example "server side flag set":
+  describe "PUT #flag_as_inappropriate" do
+    before :each do
+      @message = create(:message)
+    end
+    it "marks the message as inappropriate" do
+      put :flag_as_inappropriate, id: @message
+      @message.reload.is_inappropriate?.should be_true
+    end
+    it "redirects to messages#index" do
+      put :flag_as_inappropriate, id: @message
+      response.should redirect_to messages_url
+    end
+  end
+
+  # nested routes example: /contacts/34/appointments/22
+  describe 'GET #show' do
+    it "renders the :show template for the appointment" do
+      contact = create(:contact)
+      appointment = create(:appointment, contact: contact)
+      get :show, id: appointment, contact_id: contact.id
+      response.should render_template :show
+    end
+  end
+
+  # csv output example: 
+  # requires a route like: link_to 'Export', messages_path(format: :csv)
+  def controller_code_for_index
+    @messages = Message.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.csv do
+        send_data(Message.to_csv(@messages),
+                  type: 'text/csv; charset=iso-8859-1; header=present',
+                  disposition: 'attachment; filename=messages.csv')
+      end
+    end
+  end
+
+  describe 'CSV output' do
+    it "returns a CSV file" do
+      get :index, format: :csv
+      response.headers['Content-Type'].should have_content 'text/csv'
+    end
+    it 'returns content' do
+      create(:message, name: 'Aaron', email: 'aaron@sample.com', message: 'Testing!')
+      get :index, format: :csv
+      response.body.should have_content 'Aaron,aaron@sample.com,Testing!'
+    end
+  end
+
+  # This will verify that the controller is returning the CSV data with the proper content type. However,
+  # given the structure we’re using to actually generate CSV content–that is, with a class method on
+  # Contact, testing that functionality at the model level is perhaps the ideal way to go:
+  it "returns comma separated values" do
+    create(:message, name: 'Aaron', email: 'aaron@sample.com', message: 'Test message')
+    Contact.to_csv.should =~ /Aaron Sumner,aaron@sample.com,Test message/
+  end
+  
+  # json example:
+  it "returns JSON-formatted content" do
+    message = create(:message)
+    get :index, format: :json
+    response.body.should have_content message.to_json
+  end
+end
+
+# Local Variables:
+# mode:                 ruby
+# mode:                 font-lock
+# comment-column:       48
+# End:

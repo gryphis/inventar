@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Editing Parts" do
   before do
-    Factory(:part, :desc => "HP DL160G6")
+    create(:part, :desc => "HP DL160G6")
     visit "/"
     click_link "HP DL160G6"
     click_link "Edit"

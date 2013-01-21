@@ -1,18 +1,18 @@
 = form_for(@part) do |f|
   = f.error_messages
-  %p
+  .part.desc
     = f.label :desc, "Description"
     %br/
     = f.text_field :desc
-  %p
+  .part.serial
     = f.label :serial, "Serial"
     %br/
     = f.text_field :serial
-  %p
+  .part.price{:"align" => "left"}
     = f.label :price, "Price"
     %br/
     = f.number_field :price, :min => 0
-  %p
+  .part.datev_id
     = f.label :datev_id, "Datev_ID"
     %br/
     = f.number_field :datev_id, :min => 0
