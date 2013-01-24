@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PartsController do
   it "displays a specific error for an invalid part" do
-    get :show, :id => "not-here"
+    get :show, id: "not-here"
     message = "The part you were looking for could not be found."
     flash[:alert].should == message
   end
@@ -31,7 +31,7 @@ describe PartsController do
       response.should render_template :show
     end
     it "displays an error and a part list on request of an invalid part" do
-      get :show, :id => "not-here"
+      get :show, id: "not-here"
       response.should redirect_to(parts_path)
       flash[:alert].should_not == nil
       flash[:alert].should_not == ""

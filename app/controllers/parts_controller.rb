@@ -1,5 +1,5 @@
 class PartsController < ApplicationController
-  before_filter :find_part, :only => [:show,:edit,:update,:destroy]
+  before_filter :find_part, only: [:show,:edit,:update,:destroy]
 
   def index
     @parts = Part.all
@@ -11,11 +11,11 @@ class PartsController < ApplicationController
     @part = Part.new(params[:part])
     if @part.save
       # flash[:notice:] = "Part has been created."
-      redirect_to @part, :notice => "Part has been created."
+      redirect_to @part, notice: "Part has been created."
     else
       # nothing yet
       flash[:alert] = "Part has not been created."
-      render :action => "new"
+      render action: "new"
     end
   end
   def show
@@ -28,7 +28,7 @@ class PartsController < ApplicationController
       redirect_to @part
     else
       flash[:alert] = "Part has not been updated."
-      render :action => "edit"
+      render action: "edit"
     end
   end
   def destroy

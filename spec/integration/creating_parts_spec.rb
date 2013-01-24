@@ -7,10 +7,10 @@ feature 'Creating Parts' do
   end
   scenario "can create a part" do
     serial = "123456"
-    fill_in 'Description', :with => 'HP DL160G6'
-    fill_in 'Serial',      :with => serial
-    fill_in 'Price',       :with =>  1234.56
-    fill_in 'Datev_ID',    :with => '456456'
+    fill_in 'Description', with: 'HP DL160G6'
+    fill_in 'Serial',      with: serial
+    fill_in 'Price',       with:  1234.56
+    fill_in 'Datev_ID',    with: '456456'
     click_button 'Create Part'
     page.should have_content('Part has been created.')
     part = Part.find_by_desc('HP DL160G6')

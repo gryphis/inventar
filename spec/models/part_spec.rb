@@ -25,4 +25,12 @@ describe Part do
       true # this is an expected exception (may superflous in future)
     end
   end
+  it "ensures different datev_ids" do
+    begin
+      expect(create(:part, datev_id: 123456)).to     be_valid
+      expect(create(:part, datev_id: 123456)).to_not be_valid
+    rescue ActiveRecord::RecordInvalid => invalid
+      true # this is an expected exception (may superflous in future)
+    end
+  end    
 end
