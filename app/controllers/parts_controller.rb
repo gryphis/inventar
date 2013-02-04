@@ -10,10 +10,8 @@ class PartsController < ApplicationController
   def create
     @part = Part.new(params[:part])
     if @part.save
-      # flash[:notice:] = "Part has been created."
       redirect_to @part, notice: "Part has been created."
     else
-      # nothing yet
       flash[:alert] = "Part has not been created."
       render action: "new"
     end
@@ -23,7 +21,16 @@ class PartsController < ApplicationController
   def edit
   end
   def update
-    if @part.update_attributes(params[:part])
+    if params[:cancel]
+      flash[:notice] = "Update cancelled."
+      return redirect_to @part
+    end      
+    old_part = Part.new.reload(@part[:id])
+    @part.attributes = params[:part]
+    if old_part.as_json == @part.as_json
+      flash[:notice] = "No update requested."
+      redirect_to @part
+    elsif @part.update_attributes(params[:part])
       flash[:notice] = "Part has been updated."
       redirect_to @part
     else

@@ -7,7 +7,7 @@
     = f.label :serial, "Serial"
     %br/
     = f.text_field :serial
-  .part.price{:"align" => "left"}
+  .part.price
     = f.label :price, "Price"
     %br/
     = f.number_field :price, :min => 0
@@ -15,4 +15,9 @@
     = f.label :datev_id, "Datev_ID"
     %br/
     = f.number_field :datev_id, :min => 0
-  = f.submit
+  .form_buttons
+    = f.submit "Revert", type: "reset", disabled: true, id: "jq_revert"
+    -#= f.button "Cancel", type: 'button', onclick: "do_cancel()"
+    = f.submit name: "cancel", value: "Cancel"
+    = f.submit class: "bold"
+= javascript_tag "focus_select('#part_desc'); cancel_path='#{part_path(@part)}';"
