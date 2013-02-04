@@ -16,8 +16,7 @@
     %br/
     = f.number_field :datev_id, :min => 0
   .form_buttons
-    = f.submit "Revert", type: "reset", disabled: true, id: "jq_revert"
-    -#= f.button "Cancel", type: 'button', onclick: "do_cancel()"
-    = f.submit name: "cancel", value: "Cancel"
-    = f.submit class: "bold"
-= javascript_tag "focus_select('#part_desc'); cancel_path='#{part_path(@part)}';"
+    = f.submit "Revert", id: "revert", type: "reset"
+    = f.submit "Cancel", id: "cancel"
+    = f.submit           id: "commit", :"data-disable-with" => "Updating..."
+= javascript_tag "focus_select('#part_desc');"
