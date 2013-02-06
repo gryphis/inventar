@@ -25,7 +25,6 @@ feature "Editing Parts" do
     page.should have_content("Update cancelled.")
   end
   scenario "Check Revert", js: true do
-    print page.html
     page.execute_script("$(document).ready; focus_select('#part_desc');")
     find("#revert")[:disabled].should == "true"
     fill_in "Description", with: "some"

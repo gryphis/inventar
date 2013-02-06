@@ -8,6 +8,9 @@ class PartsController < ApplicationController
     @part = Part.new
   end
   def create
+    if params[:commit] == "Cancel"
+      return redirect_to parts_path, notice: "Creation cancelled."
+    end      
     @part = Part.new(params[:part])
     if @part.save
       redirect_to @part, notice: "Part has been created."
@@ -21,7 +24,7 @@ class PartsController < ApplicationController
   def edit
   end
   def update
-    if params[:cancel]
+    if params[:commit] == "Cancel"
       flash[:notice] = "Update cancelled."
       return redirect_to @part
     end      

@@ -24,5 +24,9 @@ feature 'Creating Parts' do
     page.should have_content("Part has not been created.")
     page.should have_content("Desc can't be blank")
   end
-
+  scenario "can cancel a creation process" do
+    click_button 'Cancel'
+    page.should have_content("Creation cancelled.")
+    page.current_url.should == parts_url
+  end
 end
