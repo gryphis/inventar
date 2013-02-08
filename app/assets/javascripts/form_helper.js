@@ -15,7 +15,10 @@ function focus_select(e){
     });
     $(document).keydown(
 	function(e) {
-	    if (e.keyCode == 27) $("#cancel").click();
+	    if (e.keyCode == 27) {
+		$("#cancel").click().submit();
+		e.preventDefault(); // ??? but really required
+	    }
 	}
     );
 };

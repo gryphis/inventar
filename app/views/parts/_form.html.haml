@@ -15,8 +15,8 @@
     = f.label :datev_id, "Datev_ID"
     %br/
     = f.number_field :datev_id, :min => 0
-  .form_buttons
-    = f.submit "Revert", id: "revert", type: "reset"
-    = f.submit "Cancel", id: "cancel"
+  #form_buttons
     = f.submit           id: "commit", :"data-disable-with" => "Updating..."
+    = f.submit "Cancel", id: "cancel"
+    = f.submit "Revert", id: "revert", type: "reset"
 = javascript_tag "focus_select('#part_desc');"
