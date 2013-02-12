@@ -17,7 +17,8 @@ feature 'Creating Parts' do
     page.current_url.should == part_url(part)
     page.should have_content(serial)
     title = "Inventar.Part"
-    find("title").should have_content(title)
+    #save_and_open_page
+    first("title").native.text.should have_content(title)
   end
   scenario "can not create a part without a description" do
     click_button 'Create Part'

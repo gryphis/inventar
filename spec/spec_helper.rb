@@ -1,8 +1,14 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+require 'capybara/rails'
+require 'capybara/rspec'
 require 'rspec/rails'
 require 'rspec/autorun'
+
+# 20130212 aka: really required?
+#require 'rack/utils'
+#Capybara.app = Rack::ShowExceptions.new(Inventar::Application)
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -49,14 +55,12 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-
-class Capybara::Session
-
-  def wait_until(timeout = Capybara.default_wait_time)
-    Timeout.timeout(timeout) do
-      sleep(0.1) until value = yield
-      value
-    end
-  end
-
-end
+# 20130212 aka: does work only with capybara-1.1.2
+#class Capybara::Session
+#  def wait_until(timeout = Capybara.default_wait_time)
+#    Timeout.timeout(timeout) do
+#      sleep(0.1) until value = yield
+#      value
+#    end
+#  end
+#end

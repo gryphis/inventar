@@ -13,4 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-= require form_helper.js

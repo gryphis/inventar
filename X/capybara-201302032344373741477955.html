@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Inventar</title>
+<!-- %= stylesheet_link_tag    "application", :media => "all" % --><script src="/home/aka/Ruby/inventar/public/assets/application.js" type="text/javascript"></script><style type="text/css">
+*		{ padding: 0; margin: 0; }
+/* html		{ background: #f8ffff; } */
+.flash		{ padding: 10px;
+		  font-weight: bold;
+		  background: #fee; 
+		  -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+.errorExplanation { background: #fee; }
+body		{ font: 13pt "Myriad Pro", Helvetica;
+		  # padding: 30px;
+		  # margin: 5px 0 0 2%;
+		  -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+#left		{ float: left; margin-left: 15px; margin-top: 15px; width: 200px; background: #eff; }
+#fincom		{ font-weight: bold; font-size: 1em; }
+#inventar	{ font-weight: bold; font-size: 2.5em; margin-bottom: 50px; }
+#main		{ float: left; margin-left: 15px; margin-top: 15px; background: #f8ffff; }
+h2 .func 	{ font-size:  0.5em; }
+table .part 	{ margin-top: 0.5em; border-spacing: 0.3em; border: 0}
+th 		{ font-size:  0.8em; color: #922; background: #f8f8f8 }
+.part.desc 	{ text-align:left;  padding-top:   10px; }
+.part.serial 	{ text-align:left;  padding-right: 10px; }
+.part.datev_id 	{ text-align:left;  padding-right: 10px; }
+.part.price 	{ text-align:right; padding-right: 10px; }
+.odd		{ background: #f8ffff; }
+.even		{ background: #f4fafa; }
+.form_buttons   { float: right; font-weight: bold; }
+.bold   { font-weight: bold; }
+  </style>
+</head>
+<body>
+<div id="left">
+  <div id="fincom">
+    <a href="http://financial.com">financial.com AG</a>
+  </div>
+  <div id="inventar">
+    <a href="/">Inventar</a>
+  </div>
+  <div id="tablinks">
+    <a href="/parts">Parts</a>
+  </div>
+</div>
+<div id="main">
+  <div id="flash">
+  </div>
+  <div id="data">
+    <h2>Edit Part</h2>
+<form accept-charset="UTF-8" action="/parts/26" class="edit_part" id="edit_part_26" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put">
+</div>
+<div class="part desc">
+<label for="part_desc">Description</label>
+<br><input id="part_desc" name="part[desc]" size="30" type="text" value="">
+</div>
+<div class="part serial">
+<label for="part_serial">Serial</label>
+<br><input id="part_serial" name="part[serial]" size="30" type="text" value="">
+</div>
+<div class="part price">
+<label for="part_price">Price</label>
+<br><input id="part_price" min="0" name="part[price]" type="number" value="7320.0">
+</div>
+<div class="part datev_id">
+<label for="part_datev_id">Datev_ID</label>
+<br><input id="part_datev_id" min="0" name="part[datev_id]" type="number" value="435448">
+</div>
+<div class="form_buttons">
+<input disabled id="jq_revert" name="commit" type="reset" value="Revert"><input name="cancel" type="submit" value="Cancel"><input class="bold" name="commit" type="submit" value="Update Part">
+</div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+focus_select('#part_desc'); cancel_path='/parts/26';
+//]]>
+</script>
+</div>
+</div>
+</body>
+</html>

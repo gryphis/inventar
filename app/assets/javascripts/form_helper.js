@@ -1,4 +1,4 @@
-fs_field = '';
+var fs_field = '';
 function fs_action(){
     $('#revert').attr('disabled', true);
     $(fs_field).focus();

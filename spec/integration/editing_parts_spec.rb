@@ -25,27 +25,16 @@ feature "Editing Parts" do
     page.should have_content("Update cancelled.")
   end
   scenario "Check Revert", js: true do
-    page.execute_script("$(document).ready; focus_select('#part_desc');")
-    find("#revert")[:disabled].should == "true"
-    fill_in "Description", with: "some"
+    page.execute_script("; $(document).ready; focus_select('#part_desc');")
+    first("#revert")[:disabled].should == "true"
+    fill_in "part_desc", with: "changed content"
     page.execute_script("$('#part_serial').focus()")
-    fill_in "Serial", with: "any"
-    #save_and_open_page
-    #todo: still disabled, why?: click_button "Revert"
-    #page.should have_content(HP6)
+    fill_in "part_serial", with: "any"
+    sleep 0.2  # wait_until() required!
     first("#revert")[:disabled].should == nil
-    click_button "Revert"
+    click_button('revert')
+    page.has_content?(HP6)
     first("#revert")[:disabled].should == "true"
   end    
-=begin
-  scenario "Check disabled Revert", js: true do
-    wait_until {first(".edit_part")}
-    first(".edit_part input[type=\"reset\"]")[:disabled].should == "true"
-    fill_in "Description", with: ""
-    fill_in "Serial", with: ""
-    #todo: still disabled, why?: 
-    first(".edit_part input[type=\"reset\"]")[:disabled].should == "true"
-  end    
-=end
 end
 
