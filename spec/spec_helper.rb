@@ -56,11 +56,11 @@ RSpec.configure do |config|
 end
 
 # 20130212 aka: does work only with capybara-1.1.2
-#class Capybara::Session
-#  def wait_until(timeout = Capybara.default_wait_time)
-#    Timeout.timeout(timeout) do
-#      sleep(0.1) until value = yield
-#      value
-#    end
-#  end
-#end
+class Capybara::Session
+  def wait_until(timeout = Capybara.default_wait_time)
+    Timeout.timeout(timeout) do
+      sleep(0.1) until value = yield
+      value
+    end
+  end
+end

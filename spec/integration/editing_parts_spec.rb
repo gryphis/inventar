@@ -24,17 +24,16 @@ feature "Editing Parts" do
     click_button "Cancel"
     page.should have_content("Update cancelled.")
   end
-  scenario "Check Revert", js: true do
+  scenario "Check Revert - retry, often failed!?", js: true do
     page.execute_script("; $(document).ready; focus_select('#part_desc');")
     first("#revert")[:disabled].should == "true"
-    fill_in "part_desc", with: "changed content"
+    fill_in("part_desc", with: "changed content")
     page.execute_script("$('#part_serial').focus()")
-    fill_in "part_serial", with: "any"
-    sleep 0.2  # wait_until() required!
-    first("#revert")[:disabled].should == nil
+    fill_in("part_serial", with: "any")
+    page.wait_until(3) { first("#revert")[:disabled] == nil }
     click_button('revert')
-    page.has_content?(HP6)
-    first("#revert")[:disabled].should == "true"
+    page.has_content?(HP6);
+    page.wait_until(3) { first("#revert")[:disabled] == "true" }
   end    
 end
 
