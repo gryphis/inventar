@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PartsController do
-  it "displays a specific error for an invalid part" do
+  it "displays a specific error for an unknown part" do
     get :show, id: "not-here"
     message = "The part you were looking for could not be found."
     flash[:alert].should == message
@@ -30,7 +30,7 @@ describe PartsController do
       get :show, id: part
       response.should render_template :show
     end
-    it "displays an error and a part list on request of an invalid part" do
+    it "displays an error and a part list on request of an unknown part" do
       get :show, id: "not-here"
       response.should redirect_to(parts_path)
       flash[:alert].should_not == nil
@@ -39,7 +39,7 @@ describe PartsController do
   end
 
 describe 'GET #new' do
-    it "assigns a new Part to @part" do
+    it "assigns a new part to @part" do
       get :new
       assigns(:part).should be_a_new(Part)
     end

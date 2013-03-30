@@ -2,43 +2,13 @@
 <html title="huhu">
 <head>
   <title><%= @title || "Inventar" %></title>
-  <!-- %= stylesheet_link_tag    "application", :media => "all" % -->
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "form_helper" %>
   <%= csrf_meta_tags %>
-  <style type="text/css">
-*		{ padding: 0; margin: 0; }
-/* html		{ background: #f8ffff; } */
-.flash		{ padding: 10px;
-		  font-weight: bold;
-		  background: #fee; 
-		}
-.errorExplanation { background: #fee; }
-body		{ font: 13pt "Myriad Pro", Helvetica;
-		  /* padding: 30px; */
-		  /* margin: 5px 0 0 2%; */
-		}
-#left		{ float: left; margin-left: 15px; margin-top: 15px; width: 200px; background: #eff; }
-#fincom		{ font-weight: bold; font-size: 1em; }
-#inventar	{ font-weight: bold; font-size: 2.5em; margin-bottom: 50px; }
-#main		{ float: left; margin-left: 15px; margin-top: 15px; background: #f8ffff; }
-h2 .func 	{ font-size:  0.5em; }
-table .part 	{ margin-top: 0.5em; border-spacing: 0.3em; border: 0}
-th 		{ font-size:  0.8em; color: #922; background: #f8f8f8 }
-.part.desc 	{ text-align:left;  padding-top:   10px; }
-.part.serial 	{ text-align:left;  padding-right: 10px; }
-.part.datev_id 	{ text-align:left;  padding-right: 10px; }
-.part.price 	{ text-align:right; padding-right: 10px; }
-.odd		{ background: #f8ffff; }
-.even		{ background: #f4fafa; }
-#form_buttons   { overflow: hidden; }
-#form_buttons input { float: right; }
-#form_buttons #commit { font-weight: bold; }
-.bold   { font-weight: bold; }
-  </style>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
 </head>
-<body>
-<div id="left">
+<body class="theme"><div id="wrapper">
+<div id="navigation">
   <div id="fincom">
     <%= link_to "financial.com AG", "http://financial.com" %>
   </div>
@@ -49,7 +19,7 @@ th 		{ font-size:  0.8em; color: #922; background: #f8f8f8 }
     <%= link_to "Parts", parts_path %>
   </div>
 </div>
-<div id="main">
+<div id="content">
   <div id="flash">
     <% flash.each do |key, value| %>
       <div class='flash' id='<%= key %>'>
@@ -61,5 +31,8 @@ th 		{ font-size:  0.8em; color: #922; background: #f8f8f8 }
     <%= yield %>
   </div>
 </div>
-</body>
+<div id="footer">
+  Impressum...
+</div>
+</div></body>
 </html>

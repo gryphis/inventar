@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Viewing parts" do
-  scenario "checks for 'parts' link" do
+  scenario "link to view parts list" do
     visit root_url
     click_link "Parts"
     page.current_url.should == parts_url;

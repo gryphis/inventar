@@ -55,7 +55,12 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
+# 20130330 aka: use: page.wait_until() - but keep in mind, capybara uses 2s as a default
 # 20130212 aka: does work only with capybara-1.1.2
+# instead of (example) 
+#     first("#revert")[:disabled].should == "true"
+# use:
+#     page.wait_until(3) { first("#revert")[:disabled] == "true" }
 class Capybara::Session
   def wait_until(timeout = Capybara.default_wait_time)
     Timeout.timeout(timeout) do

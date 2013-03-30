@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Deleting parts" do
-  scenario "Deleting a part" do
+  scenario "delete part" do
     create(:part, desc: "HP DL160G6")
     visit "/"
     click_link "HP DL160G6"
