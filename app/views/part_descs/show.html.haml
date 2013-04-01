@@ -1,0 +1,8 @@
+- @title = "Inventar.PartDesc"
+%h2
+  Part Description
+  %span.func= link_to "Edit", edit_part_desc_path(@part_desc)
+  %span.func= link_to "New", new_part_desc_path(@part_desc)
+  %span.func= link_to "Delete", part_desc_path(@part_desc), :method => :delete, |
+                 :confirm => "Are you sure to delete this part?" |
+= @part_descs=[@part_desc]; render "list"

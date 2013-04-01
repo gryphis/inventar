@@ -23,7 +23,7 @@ feature 'Creating Parts' do
   scenario "don't create a part without a description" do
     click_button 'Create Part'
     page.should have_content("Part has not been created.")
-    page.should have_content("Desc can't be blank")
+    page.should have_content("Description can't be blank")
   end
   scenario "clear a partially filled create form using 'Revert' - retry on error, maybe ok", js: true do
     page.execute_script("; $(document).ready; focus_select('#part_desc');")

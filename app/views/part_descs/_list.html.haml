@@ -1,0 +1,13 @@
+%table.part_desc
+  %tr
+    %th.part_desc.desc Description
+    %th.part_desc.manufact Manufacterer
+    %th.part_desc.type Type
+    %th.part_desc.partno PartNo
+  - oddeven=true
+  - @part_descs.each do |pd| cl = oddeven ? "odd" : "even"; oddeven = !oddeven
+    %tr
+      %td.part_desc.desc{class: cl}= link_to pd.desc, pd
+      %td.part_desc.manufact{id: "manufact_"+pd.id.to_s, class: cl}= pd.manufact
+      %td.part_desc.type{id: "type_"+pd.id.to_s, class: cl}= pd.type
+      %td.part_desc.price{id: "price_"+pd.id.to_s, class: cl}= pd.price || "(no)"

@@ -1,0 +1,22 @@
+= form_for(@part_desc) do |f|
+  .part_desc.desc
+    = f.label :desc, "Description"
+    %br/
+    = f.text_field :desc
+  .part_desc.manufac
+    = f.label :manufac, "Manufacturer"
+    %br/
+    = f.text_field :manufac
+  .part_desc.type
+    = f.label :type, "Type"
+    %br/
+    = f.text_field :type
+  .part_desc.partno
+    = f.label :partno, "PartNo"
+    %br/
+    = f.text_field :partno
+  #form_buttons
+    = f.submit           id: "commit", :"data-disable-with" => "Updating..."
+    = f.submit "Cancel", id: "cancel"
+    = f.submit "Revert", id: "revert",  type: "reset"
+= javascript_tag "focus_select('#part_desc_desc');"
