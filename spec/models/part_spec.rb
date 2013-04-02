@@ -5,7 +5,7 @@ describe Part do
     create(:part).should be_valid
   end
   it "requires a description" do
-    build(:invalid_desc).should_not be_valid
+    build(:invalid_part_desc).should_not be_valid
   end
   it "has a valid price" do
     create(:part, price: 123.45).should be_valid
@@ -14,7 +14,7 @@ describe Part do
   end
   it "doesn't allow an invalid price" do
     expect {
-      create(:invalid_price)
+      create(:invalid_part_price)
     }.to raise_error(ActiveRecord::RecordInvalid)
   end
   it "ensures different datev_id values" do

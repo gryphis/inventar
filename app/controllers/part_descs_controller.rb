@@ -5,7 +5,7 @@ class PartDescsController < ApplicationController
     @part_descs = PartDesc.all
   end
   def new
-    @part_descs = PartDesc.new
+    @part_desc = PartDesc.new
   end
   def create
     if params[:commit] == "Cancel"

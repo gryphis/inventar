@@ -7,11 +7,11 @@ FactoryGirl.define do
     price    { price_up_to_9990000 }
     datev_id { "%d" % (rand(900000)+100000) }
 
-    factory :invalid_desc do
+    factory :invalid_part_desc do
       desc nil
     end
 
-    factory :invalid_price do
+    factory :invalid_part_price do
       price { -price_up_to_9990000 }
     end
   end

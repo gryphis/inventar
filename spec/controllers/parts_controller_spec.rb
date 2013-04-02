@@ -78,12 +78,12 @@ describe 'GET #new' do
       it "does not save the new part in the database" do
         expect{
           post :create,
-          part: attributes_for(:invalid_desc)
+          part: attributes_for(:invalid_part_desc)
         }.to_not change(Part, :count)
       end
       it "re-renders the :new template" do
         post :create,
-        part: attributes_for(:invalid_desc)
+        part: attributes_for(:invalid_part_desc)
         response.should render_template :new
       end
     end
@@ -114,12 +114,12 @@ describe 'GET #new' do
       it "does not change @part's attributes" do
         new_serial = @part.serial.next
         put(:update, id: @part,
-            part: attributes_for(:invalid_desc, serial: new_serial))
+            part: attributes_for(:invalid_part_desc, serial: new_serial))
         @part.reload
         @part.serial.should_not eq(new_serial)
       end
       it "re-renders the edit method" do
-        put :update, id: @part, part: attributes_for(:invalid_desc)
+        put :update, id: @part, part: attributes_for(:invalid_part_desc)
         response.should render_template :edit
       end
     end
