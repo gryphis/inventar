@@ -16,7 +16,7 @@
     %br/
     = f.text_field :partno
   #form_buttons
-    = f.submit "Create PartDesc", id: "commit", :"data-disable-with" => "Updating..."
+    = f.submit @submit_text || "Submit", id: "commit", :"data-disable-with" => "Updating..."
     = f.submit "Cancel", id: "cancel"
     = f.submit "Revert", id: "revert",  type: "reset"
 = javascript_tag "focus_select('#part_desc_desc');"
